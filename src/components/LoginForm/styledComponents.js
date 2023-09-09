@@ -11,21 +11,25 @@ export const AppContainer = styled.div`
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  min-width: 330px;
-  padding: 30px;
+  min-height: 350px;
+  min-width: 70%;
+  padding: 15px;
   border-radius: 8px;
   background-color: ${props => (props.bgColor ? '#0f0f0f' : '#f9f9f9')};
   box-shadow: 0px 0px 10px ${props => (props.bgColor ? '#f9f9f9' : '#0f0f0f')};
   @media screen and (min-width: 768px) {
-    width: 400px;
+    min-width: 350px;
     padding: 40px;
   }
 `
 export const AppLogo = styled.img`
-  height: 40px;
+  height: 30px;
   margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    height: 40px;
+  }
 `
 export const LabelAndInputContainer = styled.div`
   display: flex;

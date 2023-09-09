@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import NxtWatchContext from '../../context/NxtWatchContext'
 import {
   AppContainer,
@@ -146,6 +147,10 @@ class LoginForm extends Component {
         {value => {
           const {isDarkTheme} = value
           const {showErrorMsg, errorMsg} = this.state
+          const accessToken = Cookies.get('jwt_token')
+          if (accessToken !== undefined) {
+            return <Redirect to="/" />
+          }
           const appLogo = isDarkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
