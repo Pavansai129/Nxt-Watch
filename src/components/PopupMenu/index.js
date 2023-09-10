@@ -1,9 +1,10 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Popup from 'reactjs-popup'
-import {AiFillHome, AiFillFire} from 'react-icons/ai'
+import {AiFillHome} from 'react-icons/ai'
 import {BiListPlus} from 'react-icons/bi'
 import {GiHamburgerMenu} from 'react-icons/gi'
+import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {IoMdClose} from 'react-icons/io'
 import NxtWatchContext from '../../context/NxtWatchContext'
@@ -14,8 +15,8 @@ import {
   CloseButtonContainer,
   CloseButton,
   NavLinksContainer,
-  NavLink,
   NavLinkItem,
+  NavLinkButton,
   NavLinkName,
 } from './styledComponents'
 
@@ -64,6 +65,7 @@ class PopupMenu extends Component {
         {value => {
           const {isDarkTheme} = value
           const {home, trending, gaming, savedVideos} = this.state
+          const iconColor = isDarkTheme ? '#f8fafc' : '#212121'
           return (
             <MenuContainer className="popup-container">
               <Popup
@@ -90,69 +92,69 @@ class PopupMenu extends Component {
                         />
                       </CloseButton>
                     </CloseButtonContainer>
-                    <NavLinksContainer>
-                      <NavLinkItem
-                        bgColor={isDarkTheme}
-                        onClick={this.onClickHome}
-                        isActive={home}
-                      >
+                    <NavLinksContainer bgColor={isDarkTheme}>
+                      <NavLinkItem>
                         <Link to="/">
-                          <NavLink>
-                            <AiFillHome color="#ff0000" size="18px" />
+                          <NavLinkButton
+                            onClick={this.onClickHome}
+                            isActive={home}
+                          >
+                            <AiFillHome
+                              size="18px"
+                              color={home ? '#ff0000' : iconColor}
+                            />
                             <NavLinkName fontColor={isDarkTheme}>
                               Home
                             </NavLinkName>
-                          </NavLink>
+                          </NavLinkButton>
                         </Link>
                       </NavLinkItem>
-                      <NavLinkItem
-                        bgColor={isDarkTheme}
-                        onClick={this.onClickTrending}
-                        isActive={trending}
-                      >
+                      <NavLinkItem>
                         <Link to="/">
-                          <NavLink>
-                            <AiFillFire
-                              color={isDarkTheme ? '#f9f9f9' : '#181818'}
+                          <NavLinkButton
+                            onClick={this.onClickTrending}
+                            isActive={trending}
+                          >
+                            <HiFire
                               size="18px"
+                              color={trending ? '#ff0000' : iconColor}
                             />
                             <NavLinkName fontColor={isDarkTheme}>
                               Trending
                             </NavLinkName>
-                          </NavLink>
+                          </NavLinkButton>
                         </Link>
                       </NavLinkItem>
-                      <NavLinkItem
-                        bgColor={isDarkTheme}
-                        isActive={gaming}
-                        onClick={this.onClickGaming}
-                      >
+                      <NavLinkItem>
                         <Link to="/">
-                          <NavLink>
+                          <NavLinkButton
+                            onClick={this.onClickGaming}
+                            isActive={gaming}
+                          >
                             <SiYoutubegaming
-                              color={isDarkTheme ? '#f9f9f9' : '#181818'}
                               size="18px"
+                              color={gaming ? '#ff0000' : iconColor}
                             />
                             <NavLinkName fontColor={isDarkTheme}>
                               Gaming
                             </NavLinkName>
-                          </NavLink>
+                          </NavLinkButton>
                         </Link>
                       </NavLinkItem>
-                      <NavLinkItem
-                        isActive={savedVideos}
-                        onClick={this.onClickSavedVideos}
-                      >
+                      <NavLinkItem>
                         <Link to="/">
-                          <NavLink>
+                          <NavLinkButton
+                            onClick={this.onClickSavedVideos}
+                            isActive={savedVideos}
+                          >
                             <BiListPlus
-                              color={isDarkTheme ? '#f9f9f9' : '#181818'}
-                              size="18px"
+                              size="20px"
+                              color={savedVideos ? '#ff0000' : iconColor}
                             />
                             <NavLinkName fontColor={isDarkTheme}>
                               Saved Videos
                             </NavLinkName>
-                          </NavLink>
+                          </NavLinkButton>
                         </Link>
                       </NavLinkItem>
                     </NavLinksContainer>

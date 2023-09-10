@@ -26,6 +26,7 @@ export const CloseButtonContainer = styled.div`
   align-items: center;
   height: 10vh;
   width: 100%;
+  padding-right: 20px;
 `
 
 export const CloseButton = styled.button`
@@ -41,26 +42,29 @@ export const NavLinksContainer = styled.ul`
   height: 90vh;
   width: 100%;
   padding: 0px;
+  background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
 `
 
 export const NavLinkItem = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: none;
   list-style-type: none;
-  width: 100vw;
-  background-color: ${props => (props.isActive ? '#424242' : '#e2e8f0')};
+  background-color: transparent;
+  width: 100%;
 `
-export const NavLink = styled.button`
+
+export const NavLinkButton = styled.button`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  padding: 0px;
+  padding-left: 32vw;
+  border: none;
+  color: ${props => (props.isActive ? '#f9f9f9' : '#0f0f0f')};
+  background-color: ${props => (props.isActive ? '#909090' : 'transparent')};
+  width: 100%;
 `
 export const NavLinkName = styled.p`
-  color: ${props => (props.fontColor ? '#f8fafc' : '#475569')};
+  color: ${props => (props.fontColor ? '#f9f9f9' : '#0f0f0f')};
   font-size: 18px;
   font-weight: 700;
 `
