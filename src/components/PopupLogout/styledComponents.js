@@ -3,17 +3,18 @@ import styled from 'styled-components'
 export const TriggerContainer = styled.button`
   border: none;
   padding: 0px;
-  width: 90px;
   background-color: transparent;
 `
 export const TriggerButtonContainer = styled.div`
   background-color: transparent;
+  padding: 0;
 `
 
 export const LogoutLogoButton = styled.button`
   background-color: transparent;
   border: none;
   font-size: 20px;
+  padding-right: 30px;
   @media screen and (min-width: 768px) {
     display: none;
   }

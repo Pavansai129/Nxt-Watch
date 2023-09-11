@@ -110,7 +110,7 @@ class PopupMenu extends Component {
                         </Link>
                       </NavLinkItem>
                       <NavLinkItem>
-                        <Link to="/">
+                        <Link to="/trending">
                           <NavLinkButton
                             onClick={this.onClickTrending}
                             isActive={trending}
@@ -126,7 +126,7 @@ class PopupMenu extends Component {
                         </Link>
                       </NavLinkItem>
                       <NavLinkItem>
-                        <Link to="/">
+                        <Link to="/gaming">
                           <NavLinkButton
                             onClick={this.onClickGaming}
                             isActive={gaming}
@@ -142,7 +142,7 @@ class PopupMenu extends Component {
                         </Link>
                       </NavLinkItem>
                       <NavLinkItem>
-                        <Link to="/">
+                        <Link to="/saved-videos">
                           <NavLinkButton
                             onClick={this.onClickSavedVideos}
                             isActive={savedVideos}

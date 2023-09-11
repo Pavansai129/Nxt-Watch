@@ -1,4 +1,4 @@
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 import {FiLogOut} from 'react-icons/fi'

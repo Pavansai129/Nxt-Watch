@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie'
 import {Link, withRouter} from 'react-router-dom'
 import {HiMoon, HiOutlineSun} from 'react-icons/hi'
 import NxtWatchContext from '../../context/NxtWatchContext'
@@ -15,7 +14,7 @@ import {
 import PopupMenu from '../PopupMenu'
 import PopupLogout from '../PopupLogout'
 
-const Header = props => (
+const Header = () => (
   <NxtWatchContext.Consumer>
     {value => {
       const {isDarkTheme, changeTheme} = value

@@ -52,7 +52,7 @@ export const NavLinkItem = styled.li`
   width: 100%;
 `
 
-export const NavLinkButton = styled.button`
+export const NavLinkButton = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;

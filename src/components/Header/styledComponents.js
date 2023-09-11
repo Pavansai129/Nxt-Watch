@@ -6,6 +6,10 @@ export const HeaderContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
+  min-width: 100vw;
+  padding-right: 20px;
+  padding-left: 20px;
+  border: none;
   background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
 `
 export const LogoContainer = styled.div`
@@ -13,23 +17,25 @@ export const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 30px;
+  border: none;
 `
 
 export const AppLogo = styled.img`
   height: 20px;
   @media screen and (min-width: 768px) {
     height: 30px;
-    margin-bottom: 0px;
   }
 `
 export const HeaderControlsContainer = styled.ul`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 10px;
+  border: none;
   list-style-type: none;
-  margin-right: 35px;
+  @media screen and (min-width: 768px) {
+    gap: 15px;
+  }
 `
 export const HeaderItem = styled.li`
   border: none;
