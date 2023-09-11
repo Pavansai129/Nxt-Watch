@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie'
 import {Link, withRouter} from 'react-router-dom'
 import {HiMoon, HiOutlineSun} from 'react-icons/hi'
-import {FiLogOut} from 'react-icons/fi'
 import NxtWatchContext from '../../context/NxtWatchContext'
 import {
   HeaderContainer,
@@ -12,9 +11,9 @@ import {
   HeaderThemeButton,
   HeaderButton,
   ProfileLogo,
-  LogoutLogoButton,
 } from './styledComponents'
 import PopupMenu from '../PopupMenu'
+import PopupLogout from '../PopupLogout'
 
 const Header = props => (
   <NxtWatchContext.Consumer>
@@ -22,11 +21,6 @@ const Header = props => (
       const {isDarkTheme, changeTheme} = value
       const onClickTheme = () => {
         changeTheme()
-      }
-      const onClickLogout = () => {
-        const {history} = props
-        Cookies.remove('jwt_token')
-        history.replace('/login')
       }
       const appLogo = isDarkTheme
         ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
@@ -59,9 +53,7 @@ const Header = props => (
               </HeaderButton>
             </HeaderItem>
             <HeaderItem>
-              <LogoutLogoButton type="button" onClick={onClickLogout}>
-                <FiLogOut color={isDarkTheme ? '#f9f9f9' : '#181818'} />
-              </LogoutLogoButton>
+              <PopupLogout />
             </HeaderItem>
           </HeaderControlsContainer>
         </HeaderContainer>

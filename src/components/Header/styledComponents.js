@@ -27,9 +27,9 @@ export const HeaderControlsContainer = styled.ul`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   list-style-type: none;
-  margin-right: 30px;
+  margin-right: 35px;
 `
 export const HeaderItem = styled.li`
   border: none;
@@ -51,14 +51,6 @@ export const HeaderButton = styled.button`
 export const ProfileLogo = styled.img`
   width: 30px;
   @media screen and (max-width: 768px) {
-    display: none;
-  }
-`
-export const LogoutLogoButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  @media screen and (min-width: 768px) {
     display: none;
   }
 `
