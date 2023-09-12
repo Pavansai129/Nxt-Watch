@@ -28,13 +28,14 @@ export const AppLogo = styled.img`
 `
 export const HeaderControlsContainer = styled.ul`
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   border: none;
   list-style-type: none;
   @media screen and (min-width: 768px) {
-    gap: 15px;
+    gap: 30px;
   }
 `
 export const HeaderItem = styled.li`
@@ -49,7 +50,7 @@ export const HeaderThemeButton = styled.button`
     font-size: 30px;
   }
 `
-export const HeaderButton = styled.button`
+export const HeaderButton = styled.div`
   background-color: transparent;
   border: none;
 `

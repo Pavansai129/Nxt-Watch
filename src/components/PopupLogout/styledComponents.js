@@ -8,9 +8,12 @@ export const TriggerContainer = styled.button`
 export const TriggerButtonContainer = styled.div`
   background-color: transparent;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-export const LogoutLogoButton = styled.button`
+export const LogoutLogoButton = styled.div`
   background-color: transparent;
   border: none;
   font-size: 20px;
@@ -19,8 +22,11 @@ export const LogoutLogoButton = styled.button`
     display: none;
   }
 `
-
-export const LogoutButton = styled.button`
+export const LogoutButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
   height: 30px;
   width: 80px;
   font-size: 15px;
@@ -29,6 +35,15 @@ export const LogoutButton = styled.button`
   color: ${props => (props.fontColor ? '#ffffff' : '#4f46e5')};
   border: 1px solid ${props => (props.borderColor ? '#ffffff' : '#4f46e5')};
   border-radius: 2px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`
+export const LogoutText = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -53,7 +68,7 @@ export const PopupLogoutContainer = styled.div`
   border: none;
   background-color: ${props => (props.bgColor ? '#212121' : '#ffffff')};
   @media screen and (min-width: 768px) {
-    width: 35vw;
+    width: 25vw;
   }
 `
 
@@ -63,7 +78,7 @@ export const PopupText = styled.p`
   margin-bottom: 35px;
   color: ${props => (props.fontColor ? '#ffffff' : '#00306e')};
   @media screen and (min-width: 768px) {
-    font-size: 15px;
+    font-size: 20px;
   }
 `
 
@@ -73,27 +88,56 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   width: 100%;
 `
-
-export const CustomConfirmButton = styled.button`
-  font-size: 10px;
-  font-weight: 500;
+export const CustomConfirmButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 28px;
   width: 60px;
-  color: #ffffff;
   background-color: blue;
   border: none;
   outline: none;
   border-radius: 2px;
+  @media screen and (min-width: 768px) {
+    height: 40px;
+    width: 100px;
+  }
 `
-export const CustomCancelButton = styled.button`
+export const CustomConfirmButtonText = styled.p`
   font-size: 10px;
   font-weight: 500;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
+`
+export const CustomCancelButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 28px;
   width: 60px;
-  color: #ffffff;
   background-color: transparent;
   color: ${props => (props.borderColor ? '#ffffff' : '#616e7c')};
   border: 1px solid ${props => (props.borderColor ? '#ffffff' : '#616e7c')};
   outline: none;
   border-radius: 2px;
+  @media screen and (min-width: 768px) {
+    height: 40px;
+    width: 100px;
+  }
+`
+
+export const CustomCancelButtonText = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+  background-color: transparent;
+  color: ${props => (props.borderColor ? '#ffffff' : '#616e7c')};
+  border: none;
+  outline: none;
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
 `

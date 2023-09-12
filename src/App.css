@@ -2,6 +2,8 @@
   box-sizing: border-box;
   font-family: 'Roboto';
   text-decoration: none;
+  list-style-type: none;
+  margin: 0;
 }
 
 body {

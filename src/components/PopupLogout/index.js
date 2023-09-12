@@ -7,13 +7,16 @@ import {
   TriggerContainer,
   TriggerButtonContainer,
   LogoutLogoButton,
-  LogoutButton,
+  LogoutButtonContainer,
+  LogoutText,
   PopupContainer,
   PopupLogoutContainer,
   PopupText,
   ButtonsContainer,
-  CustomCancelButton,
-  CustomConfirmButton,
+  CustomCancelButtonContainer,
+  CustomConfirmButtonContainer,
+  CustomCancelButtonText,
+  CustomConfirmButtonText,
 } from './styledComponents'
 
 const PopupLogout = props => (
@@ -34,13 +37,15 @@ const PopupLogout = props => (
                 <LogoutLogoButton type="button">
                   <FiLogOut color={isDarkTheme ? '#f9f9f9' : '#181818'} />
                 </LogoutLogoButton>
-                <LogoutButton
-                  type="button"
-                  borderColor={isDarkTheme}
-                  fontColor={isDarkTheme}
-                >
-                  Logout
-                </LogoutButton>
+                <LogoutButtonContainer>
+                  <LogoutText
+                    type="button"
+                    borderColor={isDarkTheme}
+                    fontColor={isDarkTheme}
+                  >
+                    Logout
+                  </LogoutText>
+                </LogoutButtonContainer>
               </TriggerButtonContainer>
             }
           >
@@ -51,12 +56,18 @@ const PopupLogout = props => (
                     Are you sure you want to logout?
                   </PopupText>
                   <ButtonsContainer>
-                    <CustomCancelButton type="button" onClick={() => close()}>
-                      Cancel
-                    </CustomCancelButton>
-                    <CustomConfirmButton type="button" onClick={onClickLogout}>
-                      Confirm
-                    </CustomConfirmButton>
+                    <CustomCancelButtonContainer
+                      type="button"
+                      onClick={() => close()}
+                    >
+                      <CustomCancelButtonText>Cancel</CustomCancelButtonText>
+                    </CustomCancelButtonContainer>
+                    <CustomConfirmButtonContainer
+                      type="button"
+                      onClick={onClickLogout}
+                    >
+                      <CustomConfirmButtonText>Confirm</CustomConfirmButtonText>
+                    </CustomConfirmButtonContainer>
                   </ButtonsContainer>
                 </PopupLogoutContainer>
               </PopupContainer>

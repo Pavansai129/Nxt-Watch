@@ -5,7 +5,8 @@ export const LeftMenubarContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 220px;
+  width: 280px;
+  flex-shrink: 0;
   min-height: 90vh;
   border: none;
   background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
@@ -47,6 +48,8 @@ export const NavLinkName = styled.p`
   color: ${props => (props.fontColor ? '#f9f9f9' : '#0f0f0f')};
   font-size: 15px;
   font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `
 export const ContactContainer = styled.div`
   display: flex;

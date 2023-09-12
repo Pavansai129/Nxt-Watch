@@ -6,7 +6,7 @@ export const MenuContainer = styled.div`
   }
 `
 
-export const PopupMenuButton = styled.button`
+export const PopupMenuButton = styled.div`
   border: none;
   background-color: transparent;
 `
@@ -29,7 +29,7 @@ export const CloseButtonContainer = styled.div`
   padding-right: 20px;
 `
 
-export const CloseButton = styled.button`
+export const CloseButton = styled.p`
   border: none;
   background-color: transparent;
   font-size: 25px;
@@ -67,4 +67,8 @@ export const NavLinkName = styled.p`
   color: ${props => (props.fontColor ? '#f9f9f9' : '#0f0f0f')};
   font-size: 18px;
   font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  background-color: transparent;
 `

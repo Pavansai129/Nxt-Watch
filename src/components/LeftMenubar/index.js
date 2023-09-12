@@ -78,7 +78,7 @@ class LeftMenubar extends Component {
                   </Link>
                 </NavLinkItem>
                 <NavLinkItem>
-                  <Link to="/trending">
+                  <Link to="/">
                     <NavLinkButton
                       onClick={this.onClickTrending}
                       isActive={trending}
@@ -94,7 +94,7 @@ class LeftMenubar extends Component {
                   </Link>
                 </NavLinkItem>
                 <NavLinkItem>
-                  <Link to="/gaming">
+                  <Link to="/">
                     <NavLinkButton
                       onClick={this.onClickGaming}
                       isActive={gaming}
@@ -108,7 +108,7 @@ class LeftMenubar extends Component {
                   </Link>
                 </NavLinkItem>
                 <NavLinkItem>
-                  <Link to="/saved-videos">
+                  <Link to="/">
                     <NavLinkButton
                       onClick={this.onClickSavedVideos}
                       isActive={savedVideos}
