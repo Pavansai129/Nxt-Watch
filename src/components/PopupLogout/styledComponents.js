@@ -54,7 +54,7 @@ export const PopupContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.8;
+  background-color: transparent;
 `
 
 export const PopupLogoutContainer = styled.div`
@@ -66,6 +66,7 @@ export const PopupLogoutContainer = styled.div`
   width: 80vw;
   border-radius: 5px;
   border: none;
+  z-index: 1;
   background-color: ${props => (props.bgColor ? '#212121' : '#ffffff')};
   @media screen and (min-width: 768px) {
     width: 25vw;
@@ -73,7 +74,7 @@ export const PopupLogoutContainer = styled.div`
 `
 
 export const PopupText = styled.p`
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
   margin-bottom: 35px;
   color: ${props => (props.fontColor ? '#ffffff' : '#00306e')};

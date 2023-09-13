@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 export const LeftMenubarContainer = styled.div`
+  width: 220px;
+  flex-shrink: 0;
+  min-height: 90vh;
+  padding-top: 10px;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 280px;
-  flex-shrink: 0;
-  min-height: 90vh;
-  border: none;
-  background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -74,6 +74,7 @@ export const ContactText = styled.p`
   color: ${props => (props.fontColor ? '#f9f9f9' : '#0f0f0f')};
   font-size: 16px;
   font-weight: 700;
+  line-height: 1.5;
 `
 export const SocialMediaIcon = styled.img`
   width: 25px;

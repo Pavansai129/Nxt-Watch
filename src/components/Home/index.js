@@ -6,6 +6,7 @@ import Header from '../Header'
 import LeftMenubar from '../LeftMenubar'
 import VideoItem from '../VideoItem'
 import {
+  LoadingViewContainer,
   HomeBodyContainer,
   HomeBannerSearchVideosContainer,
   HomeVideosContainer,
@@ -19,6 +20,12 @@ import {
   SearchInputAndIconContainer,
   SearchInput,
   SearchIconButton,
+  NoResultsViewContainer,
+  NoResultsContainer,
+  NoResultsImage,
+  NoResultsViewHeading,
+  NoResultsViewCaption,
+  RetryButton,
 } from './styledComponents'
 import NxtWatchContext from '../../context/NxtWatchContext'
 
@@ -77,6 +84,10 @@ class Home extends Component {
     }
   }
 
+  onClickRetry = () => {
+    this.setState({searchInput: ''}, this.getHomeVideos)
+  }
+
   renderSuccessView = () => (
     <NxtWatchContext.Consumer>
       {value => {
@@ -84,21 +95,79 @@ class Home extends Component {
         const {homeVideos} = this.state
         return (
           <HomeVideosContainer bgColor={isDarkTheme}>
-            {homeVideos.map(eachVideo => (
-              <VideoItem key={eachVideo.id} videoItemDetails={eachVideo} />
-            ))}
+            {homeVideos.length > 0 ? (
+              homeVideos.map(eachVideo => (
+                <VideoItem key={eachVideo.id} videoItemDetails={eachVideo} />
+              ))
+            ) : (
+              <NoResultsViewContainer bgColor={isDarkTheme}>
+                <NoResultsContainer>
+                  <NoResultsImage
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                    alt="no videos"
+                  />
+                  <NoResultsViewHeading fontColor={isDarkTheme}>
+                    No Search results found
+                  </NoResultsViewHeading>
+                  <NoResultsViewCaption fontColor={isDarkTheme}>
+                    Try different keywords or remove search filters
+                  </NoResultsViewCaption>
+                  <RetryButton onClick={this.onClickRetry}>Retry</RetryButton>
+                </NoResultsContainer>
+              </NoResultsViewContainer>
+            )}
           </HomeVideosContainer>
         )
       }}
     </NxtWatchContext.Consumer>
   )
 
-  renderFailureView = () => <h1>failure</h1>
+  renderFailureView = () => (
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const failureImageUrl = isDarkTheme
+          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        return (
+          <NoResultsViewContainer bgColor={isDarkTheme}>
+            <NoResultsContainer>
+              <NoResultsImage src={failureImageUrl} alt="failure" />
+              <NoResultsViewHeading fontColor={isDarkTheme}>
+                Oops! Something Went Wrong
+              </NoResultsViewHeading>
+              <NoResultsViewCaption fontColor={isDarkTheme}>
+                We are having some trouble to complete your request. Please try
+                again.
+              </NoResultsViewCaption>
+              <RetryButton onClick={this.onClickRetry}>Retry</RetryButton>
+            </NoResultsContainer>
+          </NoResultsViewContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  )
 
   renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#4f46e5" height="50" width="50" />
-    </div>
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <LoadingViewContainer
+            className="loader-container"
+            data-testid="loader"
+            bgColor={isDarkTheme}
+          >
+            <Loader
+              type="ThreeDots"
+              color={isDarkTheme ? '#f9f9f9' : '#181818'}
+              height="50"
+              width="50"
+            />
+          </LoadingViewContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 
   renderHomeVideos = () => {
@@ -133,8 +202,7 @@ class Home extends Component {
       <NxtWatchContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const {closeBanner, searchInput} = this.state
-          console.log(searchInput)
+          const {closeBanner} = this.state
           return (
             <>
               <Header />

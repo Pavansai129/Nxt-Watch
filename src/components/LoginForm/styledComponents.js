@@ -112,6 +112,6 @@ export const ErrorMsg = styled.p`
   text-align: left;
   width: 100%;
   @media screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `

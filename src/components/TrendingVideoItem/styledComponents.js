@@ -1,41 +1,50 @@
 import styled from 'styled-components'
 
 export const VideoItemContainer = styled.li`
+  flex-grow: 1;
   padding-left: 0px;
   margin-bottom: 10px;
   width: 100%;
-  @media screen and (min-width: 768px) {
-    width: 280px;
+  border: none;
+  @media screen and (min-width: 576px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `
 export const ThumbnailImage = styled.img`
-  width: 100%;
+  width: 100vw;
+  flex-grow: 1;
+  @media screen and (min-width: 768px) {
+    flex-grow: 0;
+    width: 280px;
+  }
 `
 
 export const VideoDetailsContainer = styled.div`
-  padding: 20px;
-  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
+  flex-grow: 1;
   background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
-  @media screen and (min-width: 768px) {
-    max-height: 500px;
-  }
 `
 export const ProfileImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  @media screen and (min-width: 575px) {
+    display: none;
+  }
 `
 
 export const VideoDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
   flex-grow: 1;
-  padding-left: 10px;
+  border: none;
+  padding-left: 20px;
   background-color: transparent;
 `
 export const ExtraSmallDevicesTitleContainer = styled.div`

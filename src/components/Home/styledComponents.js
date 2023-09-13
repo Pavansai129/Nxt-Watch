@@ -1,8 +1,17 @@
 import styled from 'styled-components'
 
+export const LoadingViewContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
+`
 export const HomeBodyContainer = styled.div`
   display: flex;
   width: 100vw;
+  height: 90vh;
+  background-color: transparent;
 `
 export const HomeBannerSearchVideosContainer = styled.div`
   display: flex;
@@ -112,5 +121,61 @@ export const HomeVideosContainer = styled.ul`
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 30px;
+    overflow-y: scroll;
   }
+`
+export const NoResultsViewContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
+`
+
+export const NoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const NoResultsImage = styled.img`
+  width: 100px;
+  margin-bottom: 15px;
+  @media screen and (min-width: 768px) {
+    width: 220px;
+  }
+`
+export const NoResultsViewHeading = styled.h1`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${props => (props.fontColor ? '#ebebeb' : '#313131')};
+  border: none;
+  margin-bottom: 15px;
+  background-color: transparent;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
+`
+export const NoResultsViewCaption = styled.p`
+  font-size: 10px;
+  font-weight: 300;
+  color: ${props => (props.fontColor ? '#ebebeb' : '#313131')};
+  border: none;
+  margin-bottom: 15px;
+  background-color: transparent;
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
+`
+export const RetryButton = styled.button`
+  font-size: 15px;
+  font-weight: 500;
+  height: 30px;
+  width: 100px;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  background-color: #3b82f6;
 `

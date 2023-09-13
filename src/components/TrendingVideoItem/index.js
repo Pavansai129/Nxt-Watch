@@ -16,7 +16,7 @@ import {
   PublishedTimeFromNow,
 } from './styledComponents'
 
-const VideoItem = props => (
+const TrendingVideoItem = props => (
   <NxtWatchContext.Consumer>
     {value => {
       const {isDarkTheme} = value
@@ -70,4 +70,4 @@ const VideoItem = props => (
   </NxtWatchContext.Consumer>
 )
 
-export default VideoItem
+export default TrendingVideoItem

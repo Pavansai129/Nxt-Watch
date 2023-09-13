@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const MenuContainer = styled.div`
+  margin-right: 10px;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -42,6 +43,7 @@ export const NavLinksContainer = styled.ul`
   height: 90vh;
   width: 100%;
   padding: 0px;
+  border: none;
   background-color: ${props => (props.bgColor ? '#181818' : '#f9f9f9')};
 `
 
