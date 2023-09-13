@@ -98,6 +98,7 @@ export const CustomConfirmButtonContainer = styled.div`
   background-color: blue;
   border: none;
   outline: none;
+  cursor: pointer;
   border-radius: 2px;
   @media screen and (min-width: 768px) {
     height: 40px;
@@ -120,6 +121,7 @@ export const CustomCancelButtonContainer = styled.div`
   align-items: center;
   height: 28px;
   width: 60px;
+  cursor: pointer;
   background-color: transparent;
   color: ${props => (props.borderColor ? '#ffffff' : '#616e7c')};
   border: 1px solid ${props => (props.borderColor ? '#ffffff' : '#616e7c')};

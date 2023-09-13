@@ -62,6 +62,7 @@ class LeftMenubar extends Component {
         {value => {
           const {isDarkTheme} = value
           const {home, trending, gaming, savedVideos} = this.state
+          console.log(home, trending, gaming, savedVideos)
           const iconColor = isDarkTheme ? '#f8fafc' : '#212121'
           return (
             <LeftMenubarContainer bgColor={isDarkTheme}>

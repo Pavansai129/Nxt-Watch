@@ -41,15 +41,17 @@ export const NavLinkButton = styled.div`
   border: none;
   padding-left: 18px;
   color: ${props => (props.isActive ? '#f9f9f9' : '#0f0f0f')};
-  background-color: ${props => (props.isActive ? '#909090' : 'transparent')};
+  background-color: ${props => (props.isActive ? '#909090' : '#ffffff')};
   width: 100%;
 `
+
 export const NavLinkName = styled.p`
   color: ${props => (props.fontColor ? '#f9f9f9' : '#0f0f0f')};
   font-size: 15px;
   font-weight: 700;
   padding-top: 10px;
   padding-bottom: 10px;
+  border: 2px solid red;
 `
 export const ContactContainer = styled.div`
   display: flex;

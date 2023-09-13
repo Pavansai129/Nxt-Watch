@@ -1,26 +1,58 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {HiFire} from 'react-icons/hi'
-import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
+import Popup from 'reactjs-popup'
+import {AiOutlineClose, AiFillHome} from 'react-icons/ai'
+import {BiListPlus} from 'react-icons/bi'
+import {HiMoon, HiOutlineSun, HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {IoMdClose} from 'react-icons/io'
+import Loader from 'react-loader-spinner'
 import Header from '../Header'
-import LeftMenubar from '../LeftMenubar'
-import TrendingVideoItem from '../TrendingVideoItem'
+import GamingVideoItem from '../GamingVideoItem'
+import PopupLogout from '../PopupLogout'
 import NxtWatchContext from '../../context/NxtWatchContext'
 import {
+  LoadingViewContainer,
+  HeaderContainer,
+  LogoContainer,
+  HeaderAppLogo,
+  HeaderControlsContainer,
+  HeaderItem,
+  HeaderThemeButton,
+  HeaderButton,
+  ProfileLogo,
+  MenuContainer,
+  PopupMenuButton,
+  PopupMenuContainer,
+  CloseButtonContainer,
+  CloseButton,
+  PopupNavLinksContainer,
+  PopupNavLinkItem,
+  PopupNavLinkButton,
+  PopupNavLinkName,
   TrendingBodyContainer,
-  TrendingBannerAndVideosContainer,
-  TrendingBannerContainer,
-  TrendingIconContainer,
+  LeftMenubarContainer,
+  NavLinksContainer,
+  NavLinkItem,
+  NavLinkButton,
+  NavLinkName,
+  ContactContainer,
+  ContactText,
+  SocialMediaContainer,
+  SocialMediaIcon,
+  GamingBannerAndVideosContainer,
+  GamingBannerContainer,
+  GamingIconContainer,
   BannerName,
-  TrendingVideosContainer,
+  GamingVideosContainer,
   NoResultsViewContainer,
   NoResultsContainer,
   NoResultsImage,
   NoResultsViewHeading,
   NoResultsViewCaption,
   RetryButton,
-  LoadingViewContainer,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -34,6 +66,10 @@ class Gaming extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     gamingVideos: [],
+    home: false,
+    trending: false,
+    gaming: true,
+    savedVideos: false,
   }
 
   componentDidMount() {
@@ -52,9 +88,15 @@ class Gaming extends Component {
     }
     const response = await fetch(apiUrl, options)
     const data = await response.json()
-
+    const updatedGamingVideos = data.videos.map(each => ({
+      id: each.id,
+      title: each.title,
+      thumbnailUrl: each.thumbnail_url,
+      viewCount: each.view_count,
+    }))
     if (response.ok === true) {
       this.setState({
+        gamingVideos: [...updatedGamingVideos],
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -63,22 +105,28 @@ class Gaming extends Component {
   }
 
   onClickRetry = () => {
-    this.getTrendingVideos()
+    this.getGamingVideos()
   }
 
   renderSuccessView = () => (
     <NxtWatchContext.Consumer>
       {value => {
         const {isDarkTheme} = value
+        const {gamingVideos} = this.state
         return (
-          <TrendingBannerAndVideosContainer>
-            <TrendingBannerContainer bgColor={isDarkTheme}>
-              <TrendingIconContainer bgColor={isDarkTheme}>
+          <GamingBannerAndVideosContainer>
+            <GamingBannerContainer bgColor={isDarkTheme}>
+              <GamingIconContainer bgColor={isDarkTheme}>
                 <SiYoutubegaming size="28px" color="#ff0000" />
-              </TrendingIconContainer>
+              </GamingIconContainer>
               <BannerName fontColor={isDarkTheme}>Gaming</BannerName>
-            </TrendingBannerContainer>
-          </TrendingBannerAndVideosContainer>
+            </GamingBannerContainer>
+            <GamingVideosContainer>
+              {gamingVideos.map(each => (
+                <GamingVideoItem key={each.id} videoItemDetails={each} />
+              ))}
+            </GamingVideosContainer>
+          </GamingBannerAndVideosContainer>
         )
       }}
     </NxtWatchContext.Consumer>
@@ -146,6 +194,282 @@ class Gaming extends Component {
     }
   }
 
+  onClickHome = () => {
+    this.setState({
+      home: true,
+      trending: false,
+      gaming: false,
+      savedVideos: false,
+    })
+  }
+
+  onClickTrending = () => {
+    this.setState({
+      home: false,
+      trending: true,
+      gaming: false,
+      savedVideos: false,
+    })
+  }
+
+  onClickGaming = () => {
+    this.setState({
+      home: false,
+      trending: false,
+      gaming: true,
+      savedVideos: false,
+    })
+  }
+
+  onClickSavedVideos = () => {
+    this.setState({
+      home: false,
+      trending: false,
+      gaming: false,
+      savedVideos: true,
+    })
+  }
+
+  renderLeftNavBar = () => (
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const {home, trending, gaming, savedVideos} = this.state
+        const iconColor = isDarkTheme ? '#f8fafc' : '#212121'
+        return (
+          <LeftMenubarContainer bgColor={isDarkTheme}>
+            <NavLinksContainer bgColor={isDarkTheme}>
+              <NavLinkItem>
+                <Link to="/">
+                  <NavLinkButton onClick={this.onClickHome} isActive={home}>
+                    <AiFillHome
+                      size="18px"
+                      color={home ? '#ff0000' : iconColor}
+                    />
+                    <NavLinkName fontColor={isDarkTheme}>Home</NavLinkName>
+                  </NavLinkButton>
+                </Link>
+              </NavLinkItem>
+              <NavLinkItem>
+                <Link to="/trending">
+                  <NavLinkButton
+                    onClick={this.onClickTrending}
+                    isActive={trending}
+                  >
+                    <HiFire
+                      size="18px"
+                      color={trending ? '#ff0000' : iconColor}
+                    />
+                    <NavLinkName fontColor={isDarkTheme}>Trending</NavLinkName>
+                  </NavLinkButton>
+                </Link>
+              </NavLinkItem>
+              <NavLinkItem>
+                <Link to="/gaming">
+                  <NavLinkButton onClick={this.onClickGaming} isActive={gaming}>
+                    <SiYoutubegaming
+                      size="18px"
+                      color={gaming ? '#ff0000' : iconColor}
+                    />
+                    <NavLinkName fontColor={isDarkTheme}>Gaming</NavLinkName>
+                  </NavLinkButton>
+                </Link>
+              </NavLinkItem>
+              <NavLinkItem>
+                <Link to="/saved-videos">
+                  <NavLinkButton
+                    onClick={this.onClickSavedVideos}
+                    isActive={savedVideos}
+                  >
+                    <BiListPlus
+                      size="20px"
+                      color={savedVideos ? '#ff0000' : iconColor}
+                    />
+                    <NavLinkName fontColor={isDarkTheme}>
+                      Saved Videos
+                    </NavLinkName>
+                  </NavLinkButton>
+                </Link>
+              </NavLinkItem>
+            </NavLinksContainer>
+            <ContactContainer>
+              <ContactText fontColor={isDarkTheme}>CONTACT US</ContactText>
+              <SocialMediaContainer>
+                <SocialMediaIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
+                  alt="facebook logo"
+                />
+                <SocialMediaIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
+                  alt="twitter logo"
+                />
+                <SocialMediaIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
+                  alt="linked in logo"
+                />
+              </SocialMediaContainer>
+              <ContactText fontColor={isDarkTheme}>
+                Enjoy! Now to see your channels and recommendations!
+              </ContactText>
+            </ContactContainer>
+          </LeftMenubarContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  )
+
+  renderPopupMenu = () => (
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const {home, trending, gaming, savedVideos} = this.state
+        const iconColor = isDarkTheme ? '#f8fafc' : '#212121'
+        return (
+          <MenuContainer className="popup-container">
+            <Popup
+              modal
+              trigger={
+                <PopupMenuButton type="button">
+                  <GiHamburgerMenu
+                    color={isDarkTheme ? '#f9f9f9' : '#181818'}
+                    size="20px"
+                  />
+                </PopupMenuButton>
+              }
+            >
+              {close => (
+                <PopupMenuContainer bgColor={isDarkTheme}>
+                  <CloseButtonContainer>
+                    <CloseButton
+                      type="button"
+                      className="trigger-button"
+                      onClick={() => close()}
+                    >
+                      <IoMdClose color={isDarkTheme ? '#f9f9f9' : '#181818'} />
+                    </CloseButton>
+                  </CloseButtonContainer>
+                  <PopupNavLinksContainer bgColor={isDarkTheme}>
+                    <PopupNavLinkItem>
+                      <Link to="/">
+                        <PopupNavLinkButton
+                          onClick={this.onClickHome}
+                          isActive={home}
+                        >
+                          <AiFillHome
+                            size="18px"
+                            color={home ? '#ff0000' : iconColor}
+                          />
+                          <PopupNavLinkName fontColor={isDarkTheme}>
+                            Home
+                          </PopupNavLinkName>
+                        </PopupNavLinkButton>
+                      </Link>
+                    </PopupNavLinkItem>
+                    <PopupNavLinkItem>
+                      <Link to="/trending">
+                        <PopupNavLinkButton
+                          onClick={this.onClickTrending}
+                          isActive={trending}
+                        >
+                          <HiFire
+                            size="18px"
+                            color={trending ? '#ff0000' : iconColor}
+                          />
+                          <PopupNavLinkName fontColor={isDarkTheme}>
+                            Trending
+                          </PopupNavLinkName>
+                        </PopupNavLinkButton>
+                      </Link>
+                    </PopupNavLinkItem>
+                    <PopupNavLinkItem>
+                      <Link to="/gaming">
+                        <PopupNavLinkButton
+                          onClick={this.onClickGaming}
+                          isActive={gaming}
+                        >
+                          <SiYoutubegaming
+                            size="18px"
+                            color={gaming ? '#ff0000' : iconColor}
+                          />
+                          <PopupNavLinkName fontColor={isDarkTheme}>
+                            Gaming
+                          </PopupNavLinkName>
+                        </PopupNavLinkButton>
+                      </Link>
+                    </PopupNavLinkItem>
+                    <PopupNavLinkItem>
+                      <Link to="/saved-videos">
+                        <PopupNavLinkButton
+                          onClick={this.onClickSavedVideos}
+                          isActive={savedVideos}
+                        >
+                          <BiListPlus
+                            size="20px"
+                            color={savedVideos ? '#ff0000' : iconColor}
+                          />
+                          <PopupNavLinkName fontColor={isDarkTheme}>
+                            Saved Videos
+                          </PopupNavLinkName>
+                        </PopupNavLinkButton>
+                      </Link>
+                    </PopupNavLinkItem>
+                  </PopupNavLinksContainer>
+                </PopupMenuContainer>
+              )}
+            </Popup>
+          </MenuContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  )
+
+  renderHeader = () => (
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme, changeTheme} = value
+        const onClickTheme = () => {
+          changeTheme()
+        }
+        const appLogo = isDarkTheme
+          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+        return (
+          <HeaderContainer bgColor={isDarkTheme}>
+            <Link to="/">
+              <LogoContainer>
+                <HeaderAppLogo src={appLogo} alt="website logo" />
+              </LogoContainer>
+            </Link>
+
+            <HeaderControlsContainer>
+              <HeaderItem>
+                <HeaderThemeButton onClick={onClickTheme}>
+                  {isDarkTheme ? (
+                    <HiOutlineSun color={isDarkTheme ? '#f9f9f9' : '#181818'} />
+                  ) : (
+                    <HiMoon color={isDarkTheme ? '#f9f9f9' : '#181818'} />
+                  )}
+                </HeaderThemeButton>
+              </HeaderItem>
+              <HeaderItem>
+                <HeaderButton type="button">
+                  {this.renderPopupMenu()}
+                  <ProfileLogo
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                    alt="profile"
+                  />
+                </HeaderButton>
+              </HeaderItem>
+              <HeaderItem>
+                <PopupLogout />
+              </HeaderItem>
+            </HeaderControlsContainer>
+          </HeaderContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  )
+
   render() {
     return (
       <NxtWatchContext.Consumer>
@@ -153,9 +477,9 @@ class Gaming extends Component {
           const {isDarkTheme} = value
           return (
             <>
-              <Header />
+              {this.renderHeader()}
               <TrendingBodyContainer bgColor={isDarkTheme}>
-                <LeftMenubar />
+                {this.renderLeftNavBar()}
                 {this.renderTrendingVideos()}
               </TrendingBodyContainer>
             </>

@@ -4,9 +4,9 @@ import Popup from 'reactjs-popup'
 import {AiFillHome} from 'react-icons/ai'
 import {BiListPlus} from 'react-icons/bi'
 import {GiHamburgerMenu} from 'react-icons/gi'
+import {IoMdClose} from 'react-icons/io'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
-import {IoMdClose} from 'react-icons/io'
 import NxtWatchContext from '../../context/NxtWatchContext'
 import {
   MenuContainer,
@@ -21,7 +21,7 @@ import {
 } from './styledComponents'
 
 class PopupMenu extends Component {
-  state = {home: true, trending: false, gaming: false, savedVideos: false}
+  state = {home: false, trending: false, gaming: false, savedVideos: false}
 
   onClickHome = () => {
     this.setState({
